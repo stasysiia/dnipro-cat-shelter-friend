@@ -42,25 +42,39 @@ p {
   justify-content: left;
 }
 
-/* buttons */
-.btn {
-  width:220px;
-  margin:24px;
-}
-.btn-round, .btn-round:visited {
-  fill: #729099;
-  color: #729099;
-  background-color: #fff;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #729099;
-  border-radius: 50px!important;
-  padding:10px;
+/*DONATE BTN*/
+:root {
+  --border-width: 0.1875em;
 }
 
-.btn-round:focus, .btn-round:hover {
-  background-color: #729099;
-  color: #fff!important;
+.button {
+  font-size: 1.25rem;
+  line-height: 1;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  vertical-align: middle;
+  display: inline-block;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin: 0 auto;
+  padding: 0.75em 1.5em; 
+  /*button colors below*/
+  background: linear-gradient(rgba(108, 149, 155, 0.8), rgba(47, 79, 79, 0.7)), linear-gradient(-60deg, rgb(98, 151, 152), rgba(152, 226, 212, 0.775));
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, calc(100% + var(--border-width) + var(--border-width)) calc(100% + var(--border-width) + var(--border-width));
+  background-position: 0 0, calc(var(--border-width) * -1) calc(var(--border-width) * -1);
+  border-radius: 2em;
+  border: var(--border-width) solid transparent;
+  /*button drop-shadow colors below*/
+  box-shadow: 0 0.125em 0.25em rgba(237, 223, 223, 0.816), 0 0 2em rgba(47, 79, 79, 0.7);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+ /*button drop-shadow colors below on hover*/
+.button:hover {
+  box-shadow: 0 0.25em 0.75em rgba(237, 223, 223, 0.816), 0 0.125em 2em rgba(47, 79, 79, 0.7);
+  transform: translateY(-0.125em);
 }
 
 /* fx */
@@ -130,21 +144,6 @@ header {
   overflow: hidden;
 }
 
-#cat-help {
-  background: rgb(47,79,79);
-  background: linear-gradient(180deg, rgba(47,79,79,0) 0%, rgba(47,79,79,1) 100%);
-  position: absolute;
-  width: 25%;
-  right: 64px;
-  top:100px;
-  float: right;
-  border-radius: 10px;
-  margin-right: 0px;
-  padding: 16px;
-  animation-delay: 0.1s;
-  animation: oggy 1.4s ease;
-}
-
 #cat-help p {
   color: #fff;
   margin: 10px;
@@ -180,17 +179,6 @@ header {
   float: left;
 }
 
-@keyframes oggy {
-  0% {
-    right: -100px;
-    opacity: 0;
-  }
-  100% {
-    right: 64px;
-    opacity: 1;
-  }
-}
-
 @keyframes kuza {
    
   from {
@@ -224,7 +212,25 @@ header {
 #cat3 {background: url(cats/fluff.jpg) no-repeat left top / 290px 200px scroll content-box;}
 #cat4 {background: url(cats/jon.jpg) no-repeat left top / 290px 200px scroll content-box;}
 #cat5 {background: url(cats/billy.jpg) no-repeat left top / 290px 200px scroll content-box;}
-  
+
+.cat-name, .cat-carousel-kitties span {
+  position: absolute;
+  left: 25%;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+}
+.cat-name {
+  top: 75%;
+  font-size: 1.6em;
+  color:#fff;
+}
+.cat-carousel-kitties span {
+  top: 89%;
+  font-size: .6em;
+  color:#fff;
+}
   .carousel {
     box-sizing: content-box;
     display: -webkit-box;
@@ -360,6 +366,7 @@ header {
 
 .txtshelter {
   float: left;
+  padding: 0 10px;
 }
 
 .picsshelter {
@@ -447,13 +454,14 @@ header {
 }
 
 .social-wrap {
+  min-width: 82px;
   border-style: solid;
   border-color: darkslategray;
   border-width: 5px;
   border-radius: 20px;
   margin: 0px 18px;
 }
-.sociables {width:80%;max-width:330px;}
+.sociables {width:100%;max-width:300px;}
 .cats,.dogs {position:relative;margin-top: 17px;}
 .cats {left:4px;}
 .dogs {left:-33px;}
@@ -600,9 +608,9 @@ header {
   }
   #main-nav ul {right: 36px;
   }
-  #cat-help {
-    width: 24%;
-    right: 14px;
+
+  .button {
+    font-size: 1rem;
   }
 }
 
@@ -700,8 +708,31 @@ header {
       text-decoration: none;
       cursor: pointer;
     }
-    .flex-wrapper {
 
+    #cat-help {
+      background: rgb(47,79,79);
+      background: linear-gradient(180deg, rgba(47,79,79,0) 0%, rgba(47,79,79,1) 100%);
+      position: absolute;
+      width: 25%;
+      right: 64px;
+      top:100px;
+      float: right;
+      border-radius: 10px;
+      margin-right: 0px;
+      padding: 16px;
+      animation-delay: 0.1s;
+      animation: oggy 1.4s ease;
+    }
+
+    @keyframes oggy {
+      0% {
+        right: -100px;
+        opacity: 0;
+      }
+      100% {
+        right: 64px;
+        opacity: 1;
+      }
     }
     
     .flex-grid {margin-top: 2rem;}
@@ -912,11 +943,21 @@ header {
     background-color: #fff;
   }
   #cat-help {
+    height: auto;
+    width: 93%;
+    background: rgb(47,79,79);
+    background: linear-gradient(180deg, rgba(47,79,79,.4) 0%, rgba(47,79,79,1) 100%);
     position: relative;
-    width: 100%;
-    right: 0px;
     top: 0px;
-    float: right;
+    margin: 15px;
+    padding:10px;
+    right:unset;
+  }
+  .button {
+    position: relative;
+    font-size: 1.4rem;
+    margin:10px;
+    left:12%;
   }
   #cat-carousel {
     padding: 5vh 3vw;
@@ -979,6 +1020,16 @@ header {
 }
 
 @media all and (min-width: 661px) and (max-width: 979px) {
+  .cat-name {
+  top: 79%;
+  font-size: 1.4em;
+  color:#fff;
+  }
+  .cat-carousel-kitties span {
+    top: 89%;
+    font-size: .6em;
+    color:#fff;
+  }
 	.flex-wrapper {
 		padding-left: 5%;
 		padding-right: 5%;
@@ -999,14 +1050,7 @@ header {
 	.flex-grid:first-child .t-col-12 {
 		 margin-top: 0;
 	}
-  #cat-help {
-    height: 300px;
-    background: rgb(47,79,79);
-    background: linear-gradient(180deg, rgba(47,79,79,.4) 0%, rgba(47,79,79,1) 100%);
-    position: relative;
-    top:60px;
-    margin:20px 0px;
-  }
+
 }
 
 @media all and (min-width: 0px) and (max-width: 660px) {	
@@ -1022,6 +1066,16 @@ header {
     height: 400px;
     left: -10px;
     float: left;
+  }
+  .cat-name {
+  top: 78%;
+  font-size: 1.2em;
+  color:#fff;
+  }
+  .cat-carousel-kitties span {
+    top: 89%;
+    font-size: .6em;
+    color:#fff;
   }
 	.flex-wrapper {
 		padding-left: 3%;
@@ -1084,5 +1138,3 @@ header {
     margin: 15px 30px 0 0;
   }
 }
-
-
